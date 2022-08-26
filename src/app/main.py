@@ -10,18 +10,18 @@ import os
 
 ####### Treino e Retreino do modelo ########
 
-df = pd.read_csv('../../data/processed/casas.csv')
+#df = pd.read_csv('../../data/processed/casas.csv')
 # Modelo apenas com o tamanho
-# X = df['tamanho']
-# y = df['preco']
+#X = df['tamanho']
+#y = df['preco']
 
-X = df.drop('preco', axis=1)
-y = df['preco']
+#X = df.drop('preco', axis=1)
+#y = df['preco']
 colunas = ['tamanho', 'ano', 'garagem']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0, test_size=0.3)
-linear_rg = LinearRegression()
-linear_rg.fit(X_train, y_train)
+#X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0, test_size=0.3)
+#linear_rg = LinearRegression()
+#linear_rg.fit(X_train, y_train)
 
 
 ############ Modelo Serializado ############
@@ -49,21 +49,21 @@ def sentiment(frase):
     return 'A polaridade da frase é de %s' % polaridade
 
 
-@app.route('/housesprice/<tamanho>')
+'''@app.route('/housesprice/<tamanho>')
 def previsao_one_var(tamanho):
     y_pred = linear_rg.predict([[float(tamanho)]])
     a = round(y_pred[0][0], 2)
-    return str(a)
+    return str(a)'''
 
 
-@app.route('/cotacao/', methods=['POST'])
+'''@app.route('/cotacao/', methods=['POST'])
 @basic_auth.required
 def cotacao():
     dados = request.get_json()
     dados_input = [dados[col] for col in colunas]
     preco = linear_rg.predict([dados_input])
 
-    return jsonify(preco=preco[0])
+    return jsonify(preco=preco[0])'''
 
 
 @app.route('/cotacao2/', methods=['POST'])
